@@ -4,17 +4,10 @@
 }
 
 #game {
-    border: 1px solid black;
     margin: 0 auto;
 }
 
-#turn {
-    border: 1px solid blue;
-}
 
-#outcome {
-    border: 1px solid green;
-}
 #board {
     border: 1px solid red;
     width: calc(7*var(--divwidth));
@@ -27,4 +20,14 @@
 #board div {
     height: var(--divheight);
     width: var(--divwidth);
+}
+
+.red {
+    background-color: red;
+    border-radius: 10px;
+}
+
+.blue {
+    background-color: blue;
+    border-radius: 10px;
 }
