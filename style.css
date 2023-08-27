@@ -1,3 +1,8 @@
+:root {
+    --divwidth: 20px;
+    --divheight: 20px;
+}
+
 #game {
     border: 1px solid black;
     margin: 0 auto;
@@ -12,14 +17,14 @@
 }
 #board {
     border: 1px solid red;
-    width: 140px;
-    height: 120px;
+    width: calc(7*var(--divwidth));
+    height: calc(6*var(--divheight));
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 #board div {
-    height: 20px;
-    width: 20px;
+    height: var(--divheight);
+    width: var(--divwidth);
 }
