@@ -82,7 +82,6 @@ function isWinVertical(column, index) {
 }
 
 function isWinHorizontal(column, index) {
-    countLeft = 1
     stepsRight = 0
     while ((index + stepsRight + 1 < columns * rows) && (index + stepsRight + 1 % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
         stepsRight += 1
@@ -104,11 +103,26 @@ function isWinHorizontal(column, index) {
 }
 
 function isWinDiagonal1(column, index) {
-
+    // check for win on right slanting diagonal
+    stepsRight = 0
+    while ( (index - ( stepsRight + 1 ) * (columns - 1)  > 0) && (stepsRight < 4) && (squares[index - ( stepsRight + 1 ) * (columns - 1)].classList.contains(player[turn])) ) {
+        stepsRight += 1
+    }
+    if (stepsRight === 3) {
+        return true
+    }
+    stepsLeft = 0
+    while ( (index + (stepsLeft + 1) * (columns - 1) < columns * rows) && ( stepsLeft + stepsRight < 3) && (squares[index + (stepsLeft + 1) * (columns - 1)].classList.contains(player[turn])) ) {
+        stepsLeft += 1
+    }
+    if (stepsLeft + stepsRight === 3) {
+        return true
+    }
+    return false
 }
 
 function isWinDiagonal2(column, index) {
-
+    // check for win on left slanting diagonal
 }
 
 function getColumnTopIndex(divindex) {
