@@ -44,6 +44,21 @@ function initializeBoard() {
 }
 
 function isWin(column, index) {
+    if (isWinVertical(column, index)) {
+        return true
+    }
+    else if (isWinHorizontal(column, index)) {
+        return true
+    }
+    else if (isWinDiagonal1(column, index)) {
+        return true
+    }
+    else if (isWinDiagonal2(column, index)) {
+        return true
+    }
+}
+
+function isWinVertical(column, index) {
     if (countColumns[column] < 4) {
         return false
     }
@@ -53,6 +68,36 @@ function isWin(column, index) {
         }
     }
     return true
+}
+
+function isWinHorizontal(column, index) {
+    countLeft = 1
+    stepsRight = 0
+    while ((index + stepsRight + 1 % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
+        stepsRight += 1
+    }
+    // There are steps similar disks to the right
+    // If there are three similar disks to the right, the player won
+    if (stepsRight === 3) {
+        return true
+    }
+    // Otherwise, we need to see if there are 4 - 1 - stepsRight disks to the left
+    stepsLeft = 0
+    while ((index - stepsLeft - 1 % columns !== columns - 1) && (stepsLeft < 3 - stepsRight) && (squares[index - stepsLeft - 1].classList.contains(player[turn]))) {
+        stepsLeft += 1
+    }
+    if (stepsLeft + stepsRight + 1 === 4) {
+        return true
+    }
+    return false
+}
+
+function isWinDiagonal1(column, index) {
+
+}
+
+function isWinDiagonal2(column, index) {
+
 }
 
 function getColumnTopIndex(divindex) {
