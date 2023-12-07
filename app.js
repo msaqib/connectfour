@@ -32,6 +32,10 @@ function initializeBoard() {
                     resultSpan.innerHTML = 'Player ' + (turn + 1) + ' wins'
                     squares.forEach( (square, index) => square.onclick = null)
                 }
+                else if (isTie()) {
+                    resultSpan.innerHTML = 'It is a tie!'
+                    squares.forEach( (square, index) => square.onclick = null)
+                }
                 turn = 1 - turn
                 playerSpan.innerHTML = turn + 1
             }
@@ -41,6 +45,13 @@ function initializeBoard() {
             }
         }
     })
+}
+
+function isTie() {
+    if (countColumns.reduce( (acc, value) => acc + value) === columns * rows) {
+        return true
+    }
+    return false
 }
 
 function isWin(column, index) {
@@ -73,7 +84,7 @@ function isWinVertical(column, index) {
 function isWinHorizontal(column, index) {
     countLeft = 1
     stepsRight = 0
-    while ((index + stepsRight + 1 % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
+    while ((index + stepsRight + 1 < columns * rows) && (index + stepsRight + 1 % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
         stepsRight += 1
     }
     // There are steps similar disks to the right
@@ -83,7 +94,7 @@ function isWinHorizontal(column, index) {
     }
     // Otherwise, we need to see if there are 4 - 1 - stepsRight disks to the left
     stepsLeft = 0
-    while ((index - stepsLeft - 1 % columns !== columns - 1) && (stepsLeft < 3 - stepsRight) && (squares[index - stepsLeft - 1].classList.contains(player[turn]))) {
+    while ((index - stepsLeft - 1 > -1) && (index - stepsLeft - 1 % columns !== columns - 1) && (stepsLeft < 3 - stepsRight) && (squares[index - stepsLeft - 1].classList.contains(player[turn]))) {
         stepsLeft += 1
     }
     if (stepsLeft + stepsRight + 1 === 4) {
