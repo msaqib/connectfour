@@ -123,6 +123,21 @@ function isWinDiagonal1(column, index) {
 
 function isWinDiagonal2(column, index) {
     // check for win on left slanting diagonal
+    stepsLeft = 0
+    while ( (index - ( stepsLeft + 1 ) * (columns + 1)  > 0) && (stepsLeft < 4) && (squares[index - ( stepsLeft + 1 ) * (columns + 1)].classList.contains(player[turn])) ) {
+        stepsLeft += 1
+    }
+    if (stepsLeft === 3) {
+        return true
+    }
+    stepsRight = 0
+    while ( (index + (stepsRight + 1) * (columns + 1) < columns * rows) && ( stepsLeft + stepsRight < 3) && (squares[index + (stepsRight + 1) * (columns + 1)].classList.contains(player[turn])) ) {
+        stepsRight += 1
+    }
+    if (stepsLeft + stepsRight === 3) {
+        return true
+    }
+    return false
 }
 
 function getColumnTopIndex(divindex) {
