@@ -67,6 +67,7 @@ function isWin(column, index) {
     else if (isWinDiagonal2(column, index)) {
         return true
     }
+    return false
 }
 
 function isWinVertical(column, index) {
