@@ -84,7 +84,7 @@ function isWinVertical(column, index) {
 
 function isWinHorizontal(column, index) {
     stepsRight = 0
-    while ((index + stepsRight + 1 < columns * rows) && (index + stepsRight + 1 % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
+    while (((index + stepsRight + 1) % columns !== 0) && (stepsRight < 4) && (squares[index + stepsRight + 1].classList.contains(player[turn])) ) {
         stepsRight += 1
     }
     // There are steps similar disks to the right
